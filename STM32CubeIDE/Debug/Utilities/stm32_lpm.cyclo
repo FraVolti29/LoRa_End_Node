@@ -1,6 +1,6 @@
-C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Utilities/lpm/tiny_lpm/stm32_lpm.c:121:6:UTIL_LPM_Init	1
-C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Utilities/lpm/tiny_lpm/stm32_lpm.c:128:6:UTIL_LPM_DeInit	1
-C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Utilities/lpm/tiny_lpm/stm32_lpm.c:132:6:UTIL_LPM_SetStopMode	3
-C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Utilities/lpm/tiny_lpm/stm32_lpm.c:157:6:UTIL_LPM_SetOffMode	3
-C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Utilities/lpm/tiny_lpm/stm32_lpm.c:182:17:UTIL_LPM_GetMode	3
-C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Utilities/lpm/tiny_lpm/stm32_lpm.c:215:6:UTIL_LPM_EnterLowPower	3
+C:/Users/Francesca/Desktop/V20_mod_ai_0506/Utilities/lpm/tiny_lpm/stm32_lpm.c:121:6:UTIL_LPM_Init	1
+C:/Users/Francesca/Desktop/V20_mod_ai_0506/Utilities/lpm/tiny_lpm/stm32_lpm.c:128:6:UTIL_LPM_DeInit	1
+C:/Users/Francesca/Desktop/V20_mod_ai_0506/Utilities/lpm/tiny_lpm/stm32_lpm.c:132:6:UTIL_LPM_SetStopMode	3
+C:/Users/Francesca/Desktop/V20_mod_ai_0506/Utilities/lpm/tiny_lpm/stm32_lpm.c:157:6:UTIL_LPM_SetOffMode	3
+C:/Users/Francesca/Desktop/V20_mod_ai_0506/Utilities/lpm/tiny_lpm/stm32_lpm.c:182:17:UTIL_LPM_GetMode	3
+C:/Users/Francesca/Desktop/V20_mod_ai_0506/Utilities/lpm/tiny_lpm/stm32_lpm.c:215:6:UTIL_LPM_EnterLowPower	3

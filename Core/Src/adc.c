@@ -19,7 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "adc.h"
-
+#include "my_lorawan.h"
 /* USER CODE BEGIN 0 */
 
 /* USER CODE END 0 */
@@ -64,7 +64,18 @@ void MX_ADC_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN ADC_Init 2 */
+#if AI
+  ADC_ChannelConfTypeDef sConfig = {0};
 
+  sConfig.Channel = ADC_CHANNEL_5; // ADC1_IN5 → PB1
+  sConfig.Rank = ADC_REGULAR_RANK_1;
+  sConfig.SamplingTime = ADC_SAMPLINGTIME_COMMON_1; // Consistente con Init
+
+  if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+#endif
   /* USER CODE END ADC_Init 2 */
 
 }

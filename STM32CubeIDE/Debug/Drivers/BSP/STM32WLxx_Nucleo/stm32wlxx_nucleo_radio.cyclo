@@ -1,8 +1,8 @@
 ../../../../../../../Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_ll_bus.h:449:22:LL_AHB2_GRP1_EnableClock	1
-C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:46:9:BSP_RADIO_Init	1
-C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:78:9:BSP_RADIO_DeInit	1
-C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:105:9:BSP_RADIO_ConfigRFSwitch	5
-C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:155:9:BSP_RADIO_GetTxConfig	1
-C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:167:9:BSP_RADIO_IsTCXO	1
-C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:179:9:BSP_RADIO_IsDCDC	1
-C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:190:9:BSP_RADIO_GetRFOMaxPowerConfig	2
+C:/Users/Francesca/Desktop/V20_mod_ai_0506/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:46:9:BSP_RADIO_Init	1
+C:/Users/Francesca/Desktop/V20_mod_ai_0506/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:78:9:BSP_RADIO_DeInit	1
+C:/Users/Francesca/Desktop/V20_mod_ai_0506/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:105:9:BSP_RADIO_ConfigRFSwitch	5
+C:/Users/Francesca/Desktop/V20_mod_ai_0506/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:155:9:BSP_RADIO_GetTxConfig	1
+C:/Users/Francesca/Desktop/V20_mod_ai_0506/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:167:9:BSP_RADIO_IsTCXO	1
+C:/Users/Francesca/Desktop/V20_mod_ai_0506/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:179:9:BSP_RADIO_IsDCDC	1
+C:/Users/Francesca/Desktop/V20_mod_ai_0506/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo_radio.c:190:9:BSP_RADIO_GetRFOMaxPowerConfig	2

@@ -28,6 +28,7 @@ extern "C" {
 void MX_X_CUBE_AI_Init(void);
 void MX_X_CUBE_AI_Process(void);
 /* USER CODE BEGIN includes */
+extern uint8_t result_nn;
 /* USER CODE END includes */
 #ifdef __cplusplus
 }

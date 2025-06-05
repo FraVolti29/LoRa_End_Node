@@ -1,2 +1,2 @@
 ../../../../../../../Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_ll_bus.h:287:22:LL_AHB1_GRP1_EnableClock	1
-C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/Core/Src/dma.c:39:6:MX_DMA_Init	1
+C:/Users/Francesca/Desktop/V20_mod_ai_0506/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/Core/Src/dma.c:39:6:MX_DMA_Init	1
