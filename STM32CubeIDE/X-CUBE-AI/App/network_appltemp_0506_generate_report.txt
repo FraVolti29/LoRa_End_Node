@@ -1,0 +1,163 @@
+ST Edge AI Core v2.1.0-20194 329b0e98d
+Created date          : 2025-06-05 10:38:12
+Parameters            : generate --target stm32wl --name network_appltemp_0506 -m C:/Users/Francesca/Desktop/TESI/ai/Training_with_our_dataset/nn_batch_irrig_our_dataset_0506.h5 --compression none --verbosity 1 --workspace C:/Users/FRANCE~1/AppData/Local/Temp/mxAI_workspace14520837087015002425435874985618653 --output C:/Users/Francesca/.stm32cubemx/network_output
+
+Exec/report summary (generate)
+-------------------------------------------------------------------------------------------------------------------------
+model file         :   C:\Users\Francesca\Desktop\TESI\ai\Training_with_our_dataset\nn_batch_irrig_our_dataset_0506.h5   
+type               :   keras                                                                                             
+c_name             :   network_appltemp_0506                                                                             
+compression        :   none                                                                                              
+options            :   allocate-inputs, allocate-outputs                                                                 
+optimization       :   balanced                                                                                          
+target/series      :   stm32wl                                                                                           
+workspace dir      :   C:\Users\FRANCE~1\AppData\Local\Temp\mxAI_workspace14520837087015002425435874985618653            
+output dir         :   C:\Users\Francesca\.stm32cubemx\network_output                                                    
+model_fmt          :   float                                                                                             
+model_name         :   nn_batch_irrig_our_dataset_0506                                                                   
+model_hash         :   0xa07c86b0f43a2ee57fab7d9f2bd1e850                                                                
+params #           :   57 items (228 B)                                                                                  
+-------------------------------------------------------------------------------------------------------------------------
+input 1/1          :   'input_0', f32(1x3), 12 Bytes, activations                                                        
+output 1/1         :   'dense_1', f32(1x1), 4 Bytes, activations                                                         
+macc               :   59                                                                                                
+weights (ro)       :   164 B (164 B) (1 segment) / -64(-28.1%) vs float model                                            
+activations (rw)   :   44 B (44 B) (1 segment) *                                                                         
+ram (total)        :   44 B (44 B) = 44 + 0 + 0                                                                          
+-------------------------------------------------------------------------------------------------------------------------
+(*) 'input'/'output' buffers can be used from the activations buffer
+
+Model name - nn_batch_irrig_our_dataset_0506
+------ ----------------------------------------------------- ----------- ------------ ------ --------------------- --- --------------- -------------- ------------------------------- 
+m_id   layer (type,original)                                 oshape      param/size     macc          connected to   | c_size          c_macc         c_type                          
+------ ----------------------------------------------------- ----------- ------------ ------ --------------------- --- --------------- -------------- ------------------------------- 
+0      input_0 (Input, None)                                 [b:1,c:3]                                               | +128(+100.0%)   +40(+100.0%)   Dense_/Nonlinearity_[0, 1]      
+       dense_dense (Dense, Dense)                            [b:1,c:8]   32/128           32               input_0   | -128(-100.0%)   -32(-100.0%)   
+       dense (Nonlinearity, Dense)                           [b:1,c:8]                     8           dense_dense   |                 -8(-100.0%)    
+------ ----------------------------------------------------- ----------- ------------ ------ --------------------- --- --------------- -------------- ------------------------------- 
+1      batch_normalization (ScaleBias, BatchNormalization)   [b:1,c:8]   16/64            16                 dense   | -64(-100.0%)    -16(-100.0%)   
+------ ----------------------------------------------------- ----------- ------------ ------ --------------------- --- --------------- -------------- ------------------------------- 
+2      dense_1_dense (Dense, Dense)                          [b:1,c:1]   9/36              9   batch_normalization   |                 +10(+111.1%)   Dense_/Nonlinearity_[o][2, 3]   
+       dense_1 (Nonlinearity, Dense)                         [b:1,c:1]                    10         dense_1_dense   |                 -10(-100.0%)   
+------ ----------------------------------------------------- ----------- ------------ ------ --------------------- --- --------------- -------------- ------------------------------- 
+model/c-model: macc=75/59 -16(-21.3%) weights=228/164 -64(-28.1%) activations=--/44 io=--/0
+
+
+
+Generated C-graph summary
+------------------------------------------------------------------------------------------------------------------------
+model name            : nn_batch_irrig_our_dataset_0506
+c-name                : network_appltemp_0506
+c-node #              : 4
+c-array #             : 9
+activations size      : 44 (1 segment)
+weights size          : 164 (1 segment)
+macc                  : 59
+inputs                : ['input_0_output']
+outputs               : ['dense_1_output']
+
+C-Arrays (9)
+------ ----------------------- ----------- ------------------------- ------------- --------- 
+c_id   name (*_array)          item/size   domain/mem-pool           c-type        comment   
+------ ----------------------- ----------- ------------------------- ------------- --------- 
+0      dense_1_dense_bias      1/4         weights/weights           const float             
+1      dense_1_dense_output    1/4         activations/**default**   float                   
+2      dense_1_dense_weights   8/32        weights/weights           const float             
+3      dense_1_output          1/4         activations/**default**   float         /output   
+4      dense_dense_bias        8/32        weights/weights           const float             
+5      dense_dense_output      8/32        activations/**default**   float                   
+6      dense_dense_weights     24/96       weights/weights           const float             
+7      dense_output            8/32        activations/**default**   float                   
+8      input_0_output          3/12        activations/**default**   float         /input    
+------ ----------------------- ----------- ------------------------- ------------- --------- 
+
+C-Layers (4)
+------ ---------------- ---- --------------- ------ ----- -------------------------- ------------------ 
+c_id   name (*_layer)   id   layer_type      macc   rom   tensors                    shape (array id)   
+------ ---------------- ---- --------------- ------ ----- -------------------------- ------------------ 
+0      dense_dense      0    Dense           32     128   I: input_0_output          f32(1x3) (8)       
+                                                          W: dense_dense_weights     f32(8x3) (6)       
+                                                          W: dense_dense_bias        f32(8) (4)         
+                                                          O: dense_dense_output      f32(1x8) (5)       
+------ ---------------- ---- --------------- ------ ----- -------------------------- ------------------ 
+1      dense            0    Nonlinearity    8      0     I: dense_dense_output      f32(1x8) (5)       
+                                                          O: dense_output            f32(1x8) (7)       
+------ ---------------- ---- --------------- ------ ----- -------------------------- ------------------ 
+2      dense_1_dense    2    Dense           9      36    I: dense_output            f32(1x8) (7)       
+                                                          W: dense_1_dense_weights   f32(1x8) (2)       
+                                                          W: dense_1_dense_bias      f32(1) (0)         
+                                                          O: dense_1_dense_output    f32(1x1) (1)       
+------ ---------------- ---- --------------- ------ ----- -------------------------- ------------------ 
+3      dense_1          2    Nonlinearity    10     0     I: dense_1_dense_output    f32(1x1) (1)       
+                                                          O: dense_1_output          f32(1x1) (3)       
+------ ---------------- ---- --------------- ------ ----- -------------------------- ------------------ 
+
+
+
+Number of operations per c-layer
+------- ------ ------------------------ ----- -------------- 
+c_id    m_id   name (type)                #op           type 
+------- ------ ------------------------ ----- -------------- 
+0       0      dense_dense (Dense)         32   smul_f32_f32 
+1       0      dense (Nonlinearity)         8     op_f32_f32 
+2       2      dense_1_dense (Dense)        9   smul_f32_f32 
+3       2      dense_1 (Nonlinearity)      10     op_f32_f32 
+------- ------ ------------------------ ----- -------------- 
+total                                      59 
+
+Number of operation types
+---------------- ---- ----------- 
+operation type      #           % 
+---------------- ---- ----------- 
+smul_f32_f32       41       69.5% 
+op_f32_f32         18       30.5% 
+
+Complexity report (model)
+------ --------------- ------------------------- ------------------------- -------- 
+m_id   name            c_macc                    c_rom                     c_id     
+------ --------------- ------------------------- ------------------------- -------- 
+0      input_0         ||||||||||||||||  67.8%   ||||||||||||||||  78.0%   [0, 1]   
+2      dense_1_dense   ||||||||          32.2%   |||||             22.0%   [2, 3]   
+------ --------------- ------------------------- ------------------------- -------- 
+macc=59 weights=164 act=44 ram_io=0
+ 
+ Requested memory size by section - "stm32wl" target
+ ------------------------------ ------- -------- ------- ----- 
+ module                            text   rodata    data   bss 
+ ------------------------------ ------- -------- ------- ----- 
+ NetworkRuntime1010_CM4_GCC.a     7,060        0       0     0 
+ network_appltemp_0506.o            472       32   1,264   136 
+ network_appltemp_0506_data.o        48       16      88     0 
+ lib (toolchain)*                 2,170       24       0     0 
+ ------------------------------ ------- -------- ------- ----- 
+ RT total**                       9,750       72   1,352   136 
+ ------------------------------ ------- -------- ------- ----- 
+ weights                              0      168       0     0 
+ activations                          0        0       0    44 
+ io                                   0        0       0     0 
+ ------------------------------ ------- -------- ------- ----- 
+ TOTAL                            9,750      240   1,352   180 
+ ------------------------------ ------- -------- ------- ----- 
+ *  toolchain objects (libm/libgcc*)
+ ** RT AI runtime objects (kernels+infrastructure)
+  
+  Summary - "stm32wl" target
+  ---------------------------------------------------
+               FLASH (ro)      %*   RAM (rw)       % 
+  ---------------------------------------------------
+  RT total         11,174   98.5%      1,488   97.1% 
+  ---------------------------------------------------
+  TOTAL            11,342              1,532         
+  ---------------------------------------------------
+  *  rt/total
+
+
+Generated files (7)
+------------------------------------------------------------------------------------ 
+C:\Users\Francesca\.stm32cubemx\network_output\network_appltemp_0506_data_params.h   
+C:\Users\Francesca\.stm32cubemx\network_output\network_appltemp_0506_data_params.c   
+C:\Users\Francesca\.stm32cubemx\network_output\network_appltemp_0506_data.h          
+C:\Users\Francesca\.stm32cubemx\network_output\network_appltemp_0506_data.c          
+C:\Users\Francesca\.stm32cubemx\network_output\network_appltemp_0506_config.h        
+C:\Users\Francesca\.stm32cubemx\network_output\network_appltemp_0506.h               
+C:\Users\Francesca\.stm32cubemx\network_output\network_appltemp_0506.c               

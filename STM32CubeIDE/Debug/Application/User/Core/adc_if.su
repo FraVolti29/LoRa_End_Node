@@ -1,0 +1,5 @@
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/Core/Src/adc_if.c:79:6:SYS_InitMeasurement	4	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/Core/Src/adc_if.c:90:6:SYS_DeInitMeasurement	4	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/Core/Src/adc_if.c:97:9:SYS_GetTemperatureLevel	16	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/Core/Src/adc_if.c:139:10:SYS_GetBatteryLevel	16	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/Core/Src/adc_if.c:181:17:ADC_ReadChannels	32	static

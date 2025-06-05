@@ -1,0 +1,28 @@
+# STM32CubeIDE build
+/Debug/
+/Release/
+*.o
+*.d
+*.elf
+*.bin
+*.hex
+*.map
+
+# IDE files
+.cproject
+.project
+.settings/
+
+# Makefiles auto-generati
+makefile
+*.mk
+
+# PDF troppo lunghi
+STM32CubeIDE/Doc/SENSORS/STHS34PF80/*.pdf
+
+# Backup & sistema
+*.log
+*.swp
+*~
+.DS_Store
+Thumbs.db

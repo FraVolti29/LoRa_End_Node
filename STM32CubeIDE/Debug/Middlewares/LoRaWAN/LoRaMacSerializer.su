@@ -1,0 +1,4 @@
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Middlewares/Third_Party/LoRaWAN/Mac/LoRaMacSerializer.c:36:27:LoRaMacSerializerJoinRequest	24	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Middlewares/Third_Party/LoRaWAN/Mac/LoRaMacSerializer.c:72:27:LoRaMacSerializerReJoinType1	24	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Middlewares/Third_Party/LoRaWAN/Mac/LoRaMacSerializer.c:109:27:LoRaMacSerializerReJoinType0or2	24	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Middlewares/Third_Party/LoRaWAN/Mac/LoRaMacSerializer.c:146:27:LoRaMacSerializerData	24	static

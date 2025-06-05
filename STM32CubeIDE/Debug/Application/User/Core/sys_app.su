@@ -1,0 +1,15 @@
+../../../../../../../Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_ll_rcc.h:1971:22:LL_RCC_SetClkAfterWakeFromStop	16	static
+../../../../../../../Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_ll_system.h:1880:26:LL_FLASH_GetUDN	4	static
+../../../../../../../Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_ll_system.h:1890:26:LL_FLASH_GetDeviceID	4	static
+../../../../../../../Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_ll_system.h:1900:26:LL_FLASH_GetSTCompanyID	4	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/Core/Src/sys_app.c:90:6:SystemApp_Init	8	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/Core/Src/sys_app.c:147:6:UTIL_SEQ_Idle	8	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/Core/Src/sys_app.c:205:6:GetUniqueId	40	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/Core/Src/sys_app.c:245:6:GetDevAddr	24	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/Core/Src/sys_app.c:267:13:TimestampNow	32	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/Core/Src/sys_app.c:280:6:UTIL_ADV_TRACE_PreSendHook	8	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/Core/Src/sys_app.c:291:6:UTIL_ADV_TRACE_PostSendHook	8	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/Core/Src/sys_app.c:302:13:tiny_snprintf_like	24	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/Core/Src/sys_app.c:325:19:HAL_InitTick	16	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/Core/Src/sys_app.c:340:10:HAL_GetTick	16	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/Core/Src/sys_app.c:372:6:HAL_Delay	16	static

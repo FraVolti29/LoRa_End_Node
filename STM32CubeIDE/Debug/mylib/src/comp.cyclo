@@ -1,0 +1,5 @@
+../../../../../../../Drivers/STM32WLxx_HAL_Driver/Inc/stm32wlxx_ll_bus.h:449:22:LL_AHB2_GRP1_EnableClock	1
+../mylib/src/comp.c:31:6:MX_COMP1_Init	2
+../mylib/src/comp.c:60:6:MX_COMP2_Init	2
+../mylib/src/comp.c:89:6:HAL_COMP_MspInit	3
+../mylib/src/comp.c:139:6:HAL_COMP_MspDeInit	3

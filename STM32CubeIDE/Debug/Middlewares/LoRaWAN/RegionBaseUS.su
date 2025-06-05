@@ -1,0 +1,4 @@
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Middlewares/Third_Party/LoRaWAN/Mac/Region/RegionBaseUS.c:48:24:FindAvailable125kHzChannels	32	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Middlewares/Third_Party/LoRaWAN/Mac/Region/RegionBaseUS.c:74:17:RegionBaseUSComputeNext125kHzJoinChannel	48	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Middlewares/Third_Party/LoRaWAN/Mac/Region/RegionBaseUS.c:135:6:RegionBaseUSVerifyFrequencyGroup	24	static
+C:/Users/Francesca/Desktop/V20_mod_ai_23-04/Middlewares/Third_Party/LoRaWAN/Mac/Region/RegionBaseUS.c:146:10:RegionBaseUSCalcDownlinkFrequency	24	static

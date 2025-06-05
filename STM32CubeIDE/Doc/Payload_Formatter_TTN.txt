@@ -1,0 +1,146 @@
+// Define feature enable variables
+var MY_ES_FEATURE_ENABLE = true;
+var MY_SM_FEATURE_ENABLE = true;
+var MY_SHT40 = true;
+var MY_STTS22H = true;
+var MY_STHS34PF80 = true;
+var MY_LIS2DU12 = true;
+var MY_RM_FEATURE_ENABLE = true;
+var MY_STHS34PF80_Raw_Data_ENABLE = false;
+
+// Sensitivity for LIS2DU12
+var SENSITIVITY_16G = 0.007808;
+
+// Function to convert raw values to g
+function convertToG(rawValue, sensitivity) {
+    return ((rawValue / 16) * sensitivity).toFixed(4);
+}
+
+// Function to convert raw 16-bit value to signed 16-bit integer
+function toSignedInt16(value) {
+    return value > 32767 ? value - 65536 : value;
+}
+
+// Payload formatter for TTN
+function decodeUplink(input) {
+  var bytes = input.bytes;
+  var i = 0;
+  var data = {};
+
+  // Decode Trise time
+  data["Trise(sec)"] = Math.round(((bytes[i++] << 8) | bytes[i++]) * 0.0039 * 10) / 10;
+
+  // Decode ESD Level and EBK status if ES feature is enabled
+  if (MY_ES_FEATURE_ENABLE) {
+    // Decode EBK status
+    
+    var ebk_status = bytes[i++];
+    var ebk_level = bytes[i++];
+
+    if (ebk_status == 3) {
+      data.EBK = "NP"; // Energy Backup Status = Not Connected
+    } else if (ebk_status == 2) {
+      //data.EBK = 'EOC'; // Energy Backup Status EOC = End of Charge
+      data["EBK"] = "100 %";
+    } else if (ebk_status == 1) {
+      //data.EBK = 'CCM'; // Continuous Charge Mode
+      if (ebk_level === 0) {
+        data["EBK"] = "[0 - 33]%";
+      } else if (ebk_level == 25) {
+        data["EBK"] = "[25 - 50] %";
+      } else if (ebk_level == 33) {
+        data["EBK"] = "[33 - 66] %";
+      } else if (ebk_level == 50) {
+        data["EBK"] = "[50 - 75] %";
+      } else if (ebk_level == 66) {
+        data["EBK"] = "[66 - 100] %";
+      } else if (ebk_level == 75) {
+        data["EBK"] = "[75 - 100] %";
+      } else {
+        data["EBK"] = "100 %";
+      }
+      //data.ESD_Level = ebk_level; // Decode ESD Level only if not in DCM
+    } else {
+      data.EBK = 'DCM'; // Discontinuous Charge Mode
+    }
+  }
+
+  // Decode SHT40 data if SM feature is enabled
+  if (MY_SM_FEATURE_ENABLE) {
+    if (MY_SHT40) {
+      // Decode SHT40 Temperature and divide by 10, rounded to one decimal place
+      data["SHT40_T(C)"] = ((bytes[i++] << 24) | (bytes[i++] << 16) | (bytes[i++] << 8) | bytes[i++]) / 10.0;
+      data["SHT40_T(C)"] = Math.round(data["SHT40_T(C)"] * 10) / 10;
+
+      // Decode SHT40 Humidity and divide by 10, rounded to one decimal place
+      data["SHT40_RH(%)"] = ((bytes[i++] << 24) | (bytes[i++] << 16) | (bytes[i++] << 8) | bytes[i++])/ 10.0;
+      data["SHT40_RH(%)"] = Math.round(data["SHT40_RH(%)"] * 10) / 10;
+    }
+
+    // Decode STTS22H data if sensor is present
+    if (MY_STTS22H) {
+      
+      var STTS22H_Sensor_Presence = bytes[i++];
+      
+      if (STTS22H_Sensor_Presence) {
+        data["STTS22H_T(C)"] = ((bytes[i++] << 24) | (bytes[i++] << 16) | (bytes[i++] << 8) | bytes[i++]);
+      } else {
+        data.STTS22H = "NP";
+      }
+    }
+
+    // Decode STHS34PF80 data if sensor is present
+    if (MY_STHS34PF80) {
+      var STHS34PF80_Sensor_Presence = bytes[i++];
+      if (STHS34PF80_Sensor_Presence) {
+        data["STHS34PF80(M)"] = bytes[i++];
+        
+        data["STHS34PF80(P)"] = bytes[i++];
+        
+        data["STHS34PF80(S)"] = bytes[i++];
+        
+        data.STHS34PF80_TObj = ((bytes[i++] << 24) | (bytes[i++] << 16) | (bytes[i++] << 8) | bytes[i++]) / 100.0;
+        data.STHS34PF80_TObj = Math.round(data.STHS34PF80_TObj * 10) / 10;
+        
+        data["STHS34PF80_Ta(C)"] = ((bytes[i++] << 24) | (bytes[i++] << 16) | (bytes[i++] << 8) | bytes[i++]) / 100.0;
+        data["STHS34PF80_Ta(C)"] = Math.round(data["STHS34PF80_Ta(C)"] * 10) / 10;
+        if (MY_STHS34PF80_Raw_Data_ENABLE)
+        {
+        data["STHS34PF80.P.R"] = ((bytes[i++] << 8) | bytes[i++]);
+        data["STHS34PF80.M.R"] = ((bytes[i++] << 8) | bytes[i++]);
+        }
+        else
+        {
+          i +=4;
+        }
+      } else {
+        data.STHS34PF80 = "NP";
+      }
+    }
+
+ // Decode LIS2DU12 data if sensor is present
+   if (MY_LIS2DU12) 
+   {
+      var LIS2DU12_Sensor_Presence = bytes[i++];
+      if (LIS2DU12_Sensor_Presence) 
+      {
+          var LIS2DU12_raw_x = toSignedInt16((bytes[i++] << 8) | bytes[i++]); // Acceleration on X Axis
+          var LIS2DU12_raw_y = toSignedInt16((bytes[i++] << 8) | bytes[i++]); // Acceleration on Y Axis
+          var LIS2DU12_raw_z = toSignedInt16((bytes[i++] << 8) | bytes[i++]); // Acceleration on Z Axis
+
+          data["LIS2DU12_X(g)"] = convertToG(LIS2DU12_raw_x, SENSITIVITY_16G);
+          data["LIS2DU12_Y(g)"]= convertToG(LIS2DU12_raw_y, SENSITIVITY_16G);
+          data["LIS2DU12_Z(g)"] = convertToG(LIS2DU12_raw_z, SENSITIVITY_16G);
+      } 
+      else 
+      {
+          data.LIS2DU12 = "NP";
+      }
+    }
+  }
+var irrigation_decision = bytes[bytes.length - 1];
+data["Irrigation"] = irrigation_decision === 1 ? "Pump" : "No Pump";
+  return {
+    data: data
+  };
+}
