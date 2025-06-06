@@ -13,6 +13,7 @@
 #include "app_lorawan.h"
 #include "platform.h"
 #include "sys_debug.h"
+#include "adc.h"
 
 #include "stm32wlxx_hal_def.h"
 #include "stm32wlxx_hal_lptim.h"
@@ -70,6 +71,10 @@ My_Cmode_td my_Cmode = DCM;
 #if STEVAL_HARVEST1
 
 #if MY_SoilSensor
+// Calibration values
+#define AIR_VALUE 2890.0f
+#define WATER_VALUE 1516.5f
+
 float my_SoilSensor = 0;
 #endif
 
@@ -662,13 +667,13 @@ void My_EHF(void)	// EHF = Energy Harvesting Function
 
 		case SMS:
 		{
-			My_Enter_Stop2_Mode_WFI(VAIS_HIGH, PWR_PVD_MODE_IT_RISING); 	// Set Enter Stop2 Mode and WFI
+			My_Enter_Stop2_Mode_WFI(VSMS_HIGH, PWR_PVD_MODE_IT_RISING); 	// Set Enter Stop2 Mode and WFI
 			break;
 		}
 #if AI
 		case AIS:
 		{
-			My_Enter_Stop2_Mode_WFI(VRTS, PWR_PVD_MODE_IT_RISING); 	// Set Enter Stop2 Mode and WFI
+			My_Enter_Stop2_Mode_WFI(VAIS_HIGH, PWR_PVD_MODE_IT_RISING); 	// Set Enter Stop2 Mode and WFI
 			break;
 		}
 #endif
@@ -970,6 +975,10 @@ void My_SMF(void)	// SMF = Sensor Measurement Function
 	My_SHT40_Get_Data();											// SHT40 Get Data
 #endif
 
+#if MY_SoilSensor
+	My_SoilSensor_Get_Data();										// Soil Sensor Get Data
+#endif
+
 #if MY_STTS22H && STEVAL_HARVEST1
 	My_STTS22H_Get_Data();											// STTS22H Get Data
 #endif
@@ -1009,7 +1018,7 @@ void My_SMF(void)	// SMF = Sensor Measurement Function
 void My_AIF(void)
 {
 	My_Set_PVD(VAIS_LOW, PWR_PVD_MODE_IT_FALLING);					// Set PVD
-	My_PVD_Delay();
+	//My_PVD_Delay();
 
 	MX_X_CUBE_AI_Process();
 	UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_RTF), CFG_SEQ_Prio_0);	// SendTxData
@@ -1512,10 +1521,19 @@ void My_SHT40_Get_Data(void)
 	my_SHT40_Humid = (uint32_t)(10*my_SHT40_Humid_Float);															// Scale Humidity Value and convert to integer values
 }
 #endif
+
 #if MY_SoilSensor
 void My_SoilSensor_Get_Data(void)
 {
-
+	HAL_ADC_Start(&hadc);
+	HAL_ADC_PollForConversion(&hadc, HAL_MAX_DELAY);
+	uint32_t adc_val = HAL_ADC_GetValue(&hadc);
+	HAL_ADC_Stop(&hadc);
+//	Convert the ADC value to a percentage
+	float adc = (float)adc_val;
+	if (adc > AIR_VALUE) adc = AIR_VALUE;
+	if (adc < WATER_VALUE) adc = WATER_VALUE;
+	my_SoilSensor = 100.0f * (AIR_VALUE - adc) / (AIR_VALUE - WATER_VALUE);
 }
 #endif
 

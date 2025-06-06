@@ -186,7 +186,7 @@ int acquire_and_process_data(ai_i8* data[])
 	extern float my_SoilSensor;
 	extern float my_SHT40_Temp_Float;
 	extern float my_SHT40_Humid_Float;
-	data_sensors[0] = my_SoilSensor;					// Soil Moisture Sensor
+	data_sensors[0] = 44.33;					// Soil Moisture Sensor
 	data_sensors[1] = my_SHT40_Temp_Float;				// Temp Sensor
 	data_sensors[2] = my_SHT40_Humid_Float;				// Hum Sensor
 	ai_input[0].data = AI_HANDLE_PTR(data_sensors);
@@ -231,7 +231,7 @@ void MX_X_CUBE_AI_Process(void)
     /* USER CODE BEGIN 6 */
   int res = -1;
 
-  printf("TEMPLATE - run - main loop\r\n");
+  //printf("TEMPLATE - run - main loop\r\n");
 
   if (network_appltemp_0506) {
 
