@@ -17,7 +17,7 @@
 #if STEVAL_HARVEST1
 
 /* Sensor Integration section Begin */
-#define MY_SoilSensor 0
+#define MY_SoilSensor 1
 
 #define MY_SHT40 1
 #define SHT40_MEASURE_CMD_HP 0xFD 	// SHT40 Measure T & RH with highest precision (high repeatability)

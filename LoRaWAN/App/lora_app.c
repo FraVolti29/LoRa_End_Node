@@ -56,6 +56,9 @@ uint8_t my_Join_Accept_done = 0;
 //extern uint8_t result_nn;
 
 #if MY_SM_FEATURE_ENABLE
+#if MY_SoilSensor
+extern float my_SoilSensor;
+#endif
 
 #if MY_SHT40
 extern uint32_t my_SHT40_Temp;
@@ -861,7 +864,8 @@ void My_Adv_Data_Init(void)
 #endif
 		/* Send the result of the neural network*/
 #if AI
-		AppData.Buffer[i++] =(uint8_t)(result_nn);
+		AppData.Buffer[i++] = (uint8_t)(my_SoilSensor);
+		AppData.Buffer[i++] = (uint8_t)(result_nn);
 #endif
 	}
 

@@ -1,6 +1,7 @@
 // Define feature enable variables
 var MY_ES_FEATURE_ENABLE = true;
 var MY_SM_FEATURE_ENABLE = true;
+var MY_SoilSensor = true;
 var MY_SHT40 = true;
 var MY_STTS22H = true;
 var MY_STHS34PF80 = true;
@@ -129,7 +130,7 @@ function decodeUplink(input) {
           var LIS2DU12_raw_z = toSignedInt16((bytes[i++] << 8) | bytes[i++]); // Acceleration on Z Axis
 
           data["LIS2DU12_X(g)"] = convertToG(LIS2DU12_raw_x, SENSITIVITY_16G);
-          data["LIS2DU12_Y(g)"]= convertToG(LIS2DU12_raw_y, SENSITIVITY_16G);
+          data["LIS2DU12_Y(g)"]= convertToG(LIS2DU12_raw_y, SENSITIV33ITY_16G);
           data["LIS2DU12_Z(g)"] = convertToG(LIS2DU12_raw_z, SENSITIVITY_16G);
       } 
       else 
@@ -138,8 +139,17 @@ function decodeUplink(input) {
       }
     }
   }
+  
+// Decode Soil Sensor
+if (MY_SoilSensor) {
+    var soil_value = bytes[bytes.length - 2];
+    data["SoilSensor(%)"] = soil_value;
+}
+
+
 var irrigation_decision = bytes[bytes.length - 1];
 data["Irrigation"] = irrigation_decision === 1 ? "Pump" : "No Pump";
+
   return {
     data: data
   };

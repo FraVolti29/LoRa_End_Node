@@ -60,12 +60,7 @@ extern ADC_HandleTypeDef hadc;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
-/**
-  * @brief This function reads the ADC channel
-  * @param channel channel number to read
-  * @return adc measured level value
-  */
-static uint32_t ADC_ReadChannels(uint32_t channel);
+
 
 /* USER CODE BEGIN PFP */
 
@@ -178,7 +173,7 @@ uint16_t SYS_GetBatteryLevel(void)
 
 /* USER CODE END PrFD */
 
-static uint32_t ADC_ReadChannels(uint32_t channel)
+uint32_t ADC_ReadChannels(uint32_t channel)
 {
   /* USER CODE BEGIN ADC_ReadChannels_1 */
 

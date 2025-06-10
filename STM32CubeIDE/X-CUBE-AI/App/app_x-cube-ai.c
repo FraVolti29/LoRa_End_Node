@@ -60,8 +60,12 @@
 #include "network_appltemp_0506_data.h"
 
 /* USER CODE BEGIN includes */
+#include "my_lorawan.h"
 static ai_float data_sensors[3] = {};
 uint8_t result_nn;
+extern float my_SoilSensor;
+extern float my_SHT40_Temp_Float;
+extern float my_SHT40_Humid_Float;
 /* USER CODE END includes */
 
 /* IO buffers ----------------------------------------------------------------*/
@@ -183,10 +187,7 @@ int acquire_and_process_data(ai_i8* data[])
   }
 
   */
-	extern float my_SoilSensor;
-	extern float my_SHT40_Temp_Float;
-	extern float my_SHT40_Humid_Float;
-	data_sensors[0] = 44.33;					// Soil Moisture Sensor
+	data_sensors[0] = my_SoilSensor;					// Soil Moisture Sensor
 	data_sensors[1] = my_SHT40_Temp_Float;				// Temp Sensor
 	data_sensors[2] = my_SHT40_Humid_Float;				// Hum Sensor
 	ai_input[0].data = AI_HANDLE_PTR(data_sensors);
@@ -234,7 +235,6 @@ void MX_X_CUBE_AI_Process(void)
   //printf("TEMPLATE - run - main loop\r\n");
 
   if (network_appltemp_0506) {
-
     //do {
       /* 1 - acquire and pre-process input data */
       res = acquire_and_process_data(data_ins);

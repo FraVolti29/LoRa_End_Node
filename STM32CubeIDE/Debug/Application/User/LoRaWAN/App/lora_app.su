@@ -1,6 +1,6 @@
-C:/Users/Francesca/Desktop/V20_mod_ai_0506/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/LoRaWAN/App/lora_app.c:491:6:LoRaWAN_Init	8	static
-C:/Users/Francesca/Desktop/V20_mod_ai_0506/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/LoRaWAN/App/lora_app.c:745:6:My_Adv_Data_Init	16	static
-C:/Users/Francesca/Desktop/V20_mod_ai_0506/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/LoRaWAN/App/lora_app.c:873:6:My_EMS_Adv_Data_Init	16	static
-C:/Users/Francesca/Desktop/V20_mod_ai_0506/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/LoRaWAN/App/lora_app.c:889:6:SendTxData	8	static
-C:/Users/Francesca/Desktop/V20_mod_ai_0506/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/LoRaWAN/App/lora_app.c:1133:13:OnTxData	16	static
-C:/Users/Francesca/Desktop/V20_mod_ai_0506/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/LoRaWAN/App/lora_app.c:1248:13:OnMacProcessNotify	8	static
+C:/Users/Francesca/Desktop/V20_mod_ai_0506/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/LoRaWAN/App/lora_app.c:494:6:LoRaWAN_Init	8	static
+C:/Users/Francesca/Desktop/V20_mod_ai_0506/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/LoRaWAN/App/lora_app.c:748:6:My_Adv_Data_Init	24	static
+C:/Users/Francesca/Desktop/V20_mod_ai_0506/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/LoRaWAN/App/lora_app.c:877:6:My_EMS_Adv_Data_Init	16	static
+C:/Users/Francesca/Desktop/V20_mod_ai_0506/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/LoRaWAN/App/lora_app.c:893:6:SendTxData	8	static
+C:/Users/Francesca/Desktop/V20_mod_ai_0506/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/LoRaWAN/App/lora_app.c:1137:13:OnTxData	16	static
+C:/Users/Francesca/Desktop/V20_mod_ai_0506/Projects/NUCLEO-WL55JC/Applications/LoRaWAN/LoRaWAN_End_Node/LoRaWAN/App/lora_app.c:1252:13:OnMacProcessNotify	8	static

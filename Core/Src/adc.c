@@ -64,52 +64,59 @@ void MX_ADC_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN ADC_Init 2 */
-#if AI
-  ADC_ChannelConfTypeDef sConfig = {0};
 
-  sConfig.Channel = ADC_CHANNEL_5; // ADC1_IN5 → PB1
-  sConfig.Rank = ADC_REGULAR_RANK_1;
-  sConfig.SamplingTime = ADC_SAMPLINGTIME_COMMON_1; // Consistente con Init
-
-  if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-#endif
   /* USER CODE END ADC_Init 2 */
 
 }
 
-void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
+void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
 {
-
-  if(adcHandle->Instance==ADC)
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+  if(hadc->Instance==ADC)
   {
-  /* USER CODE BEGIN ADC_MspInit 0 */
+    /* USER CODE BEGIN ADC_MspInit 0 */
 
-  /* USER CODE END ADC_MspInit 0 */
-    /* ADC clock enable */
+    /* USER CODE END ADC_MspInit 0 */
+    /* Peripheral clock enable */
     __HAL_RCC_ADC_CLK_ENABLE();
-  /* USER CODE BEGIN ADC_MspInit 1 */
 
-  /* USER CODE END ADC_MspInit 1 */
+    __HAL_RCC_GPIOB_CLK_ENABLE();
+    /**ADC GPIO Configuration
+    PB2     ------> ADC_IN4
+    */
+    GPIO_InitStruct.Pin = GPIO_PIN_2;
+    GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+    /* USER CODE BEGIN ADC_MspInit 1 */
+
+    /* USER CODE END ADC_MspInit 1 */
+
   }
+
 }
 
-void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
+void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)
 {
-
-  if(adcHandle->Instance==ADC)
+  if(hadc->Instance==ADC)
   {
-  /* USER CODE BEGIN ADC_MspDeInit 0 */
+    /* USER CODE BEGIN ADC_MspDeInit 0 */
 
-  /* USER CODE END ADC_MspDeInit 0 */
+    /* USER CODE END ADC_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_ADC_CLK_DISABLE();
-  /* USER CODE BEGIN ADC_MspDeInit 1 */
 
-  /* USER CODE END ADC_MspDeInit 1 */
+    /**ADC GPIO Configuration
+    PB2     ------> ADC_IN4
+    */
+    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_2);
+
+    /* USER CODE BEGIN ADC_MspDeInit 1 */
+
+    /* USER CODE END ADC_MspDeInit 1 */
   }
+
 }
 
 /* USER CODE BEGIN 1 */

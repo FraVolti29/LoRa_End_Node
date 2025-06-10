@@ -13,7 +13,7 @@
 #include "app_lorawan.h"
 #include "platform.h"
 #include "sys_debug.h"
-#include "adc.h"
+#include "adc_if.h"
 
 #include "stm32wlxx_hal_def.h"
 #include "stm32wlxx_hal_lptim.h"
@@ -72,8 +72,10 @@ My_Cmode_td my_Cmode = DCM;
 
 #if MY_SoilSensor
 // Calibration values
-#define AIR_VALUE 2890.0f
-#define WATER_VALUE 1516.5f
+//#define AIR_VALUE 2890.0f
+//#define WATER_VALUE 1516.5f
+#define AIR_VALUE 1879.37f
+#define WATER_VALUE 1309.0f
 
 float my_SoilSensor = 0;
 #endif
@@ -959,6 +961,23 @@ void My_SMF(void)	// SMF = Sensor Measurement Function
 
 #if STEVAL_HARVEST1
 
+#if MY_SoilSensor
+//	GPIO_InitTypeDef GPIO_InitStruct = {0};
+//	GPIO_InitStruct.Pin = GPIO_PIN_7;
+//	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+//	GPIO_InitStruct.Pull = GPIO_NOPULL;
+//	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+//	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+	MX_GPIO_Init();
+	HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7, GPIO_PIN_SET);
+	My_HAL_Delay(40);
+	My_SoilSensor_Get_Data();
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_RESET);
+
+//	GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+//	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+#endif
+
 #if MY_LIS2DU12 && STEVAL_HARVEST1
 	My_VDD_to_VDDS1_Switch(Switch_CLOSED);							// Bias the Sensors: Close the switch between VDD and VDDS1 to Power Sensors
 	My_HAL_Delay(10);												// Add a Delay
@@ -973,10 +992,6 @@ void My_SMF(void)	// SMF = Sensor Measurement Function
 
 #if MY_SHT40 && STEVAL_HARVEST1
 	My_SHT40_Get_Data();											// SHT40 Get Data
-#endif
-
-#if MY_SoilSensor
-	My_SoilSensor_Get_Data();										// Soil Sensor Get Data
 #endif
 
 #if MY_STTS22H && STEVAL_HARVEST1
@@ -1525,14 +1540,16 @@ void My_SHT40_Get_Data(void)
 #if MY_SoilSensor
 void My_SoilSensor_Get_Data(void)
 {
-	HAL_ADC_Start(&hadc);
-	HAL_ADC_PollForConversion(&hadc, HAL_MAX_DELAY);
-	uint32_t adc_val = HAL_ADC_GetValue(&hadc);
-	HAL_ADC_Stop(&hadc);
+//	HAL_ADC_Start(&hadc);
+//	HAL_ADC_PollForConversion(&hadc, 5000);
+//	uint32_t adc_val = HAL_ADC_GetValue(&hadc);
+//	HAL_ADC_Stop(&hadc);
+
+	uint32_t adc_val = ADC_ReadChannels(ADC_CHANNEL_4);
 //	Convert the ADC value to a percentage
 	float adc = (float)adc_val;
-	if (adc > AIR_VALUE) adc = AIR_VALUE;
-	if (adc < WATER_VALUE) adc = WATER_VALUE;
+//	if (adc > AIR_VALUE) adc = AIR_VALUE;
+//	if (adc < WATER_VALUE) adc = WATER_VALUE;
 	my_SoilSensor = 100.0f * (AIR_VALUE - adc) / (AIR_VALUE - WATER_VALUE);
 }
 #endif
