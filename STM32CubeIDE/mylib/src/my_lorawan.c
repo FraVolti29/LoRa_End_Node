@@ -1034,7 +1034,7 @@ void My_AIF(void)
 {
 	My_Set_PVD(VAIS_LOW, PWR_PVD_MODE_IT_FALLING);					// Set PVD
 	//My_PVD_Delay();
-
+	My_SMW_Timer(STOP_TIMER);
 	MX_X_CUBE_AI_Process();
 	UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_RTF), CFG_SEQ_Prio_0);	// SendTxData
 }
@@ -1548,8 +1548,8 @@ void My_SoilSensor_Get_Data(void)
 	uint32_t adc_val = ADC_ReadChannels(ADC_CHANNEL_4);
 //	Convert the ADC value to a percentage
 	float adc = (float)adc_val;
-//	if (adc > AIR_VALUE) adc = AIR_VALUE;
-//	if (adc < WATER_VALUE) adc = WATER_VALUE;
+	if (adc > AIR_VALUE) adc = AIR_VALUE;
+	if (adc < WATER_VALUE) adc = WATER_VALUE;
 	my_SoilSensor = 100.0f * (AIR_VALUE - adc) / (AIR_VALUE - WATER_VALUE);
 }
 #endif

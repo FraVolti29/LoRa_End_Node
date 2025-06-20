@@ -751,8 +751,8 @@ void My_Adv_Data_Init(void)
 
 	if (my_LoRAWAN_Init++ > N_LORA_TX)
 	{
-		AppData.Buffer[i++] = (uint8_t)((my_Trise_time >> 8) & 0xFF); 			// 0
-		AppData.Buffer[i++] = (uint8_t)(my_Trise_time & 0xFF); 					// 1
+//		AppData.Buffer[i++] = (uint8_t)((my_Trise_time >> 8) & 0xFF); 			// 0
+//		AppData.Buffer[i++] = (uint8_t)(my_Trise_time & 0xFF); 					// 1
 
 #if MY_ES_FEATURE_ENABLE
 
